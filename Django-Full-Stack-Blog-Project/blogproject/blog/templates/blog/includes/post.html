@@ -1,0 +1,25 @@
+{% load static %}
+<li>
+    <article class="post">
+        <a href="{% url "post-detail-page" post.slug %}">
+            <img src="{{ post.image.url }}" alt="{{ post.title }}"/>
+            <div class="post__content">
+                <h3>{{post.title}}</h3> <!-- here you access the date like this -->
+                <p>{{post.excerpt}}</p>
+                
+            </div>
+        </a>
+        {% if post.author == user %}
+        <div>
+            <a href="{% url "edit-post" post.slug %}">
+            <button>Edit</button>
+        </a>
+        <a href="{% url "delete-post" post.slug %}">
+            <button>Delete</button>
+        </a>
+        </div>
+        {% endif %}
+    </article>
+</li>
+<!-- {  } is to show in html -->
+<!-- nothing is to use in code -->

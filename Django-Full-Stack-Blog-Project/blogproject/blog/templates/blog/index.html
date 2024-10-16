@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+My Blog
+{% endblock %}
+
+{% block css_files %} 
+<link rel="stylesheet" href="{% static "blog/index.css"%}">
+<link rel="stylesheet" href="{% static "blog/post.css" %}"> <!-- for latest-posts -->
+{% endblock %}
+
+
+{% block content %}
+
+<section id="welcome">
+<header>
+    <img src="{% static "blog/images/vader.png" %}" alt="Utku - The Author Of This Blog ">
+    <h2>UTKU' BLOG</h2>
+    <p>Lorem ipsum dolor sit amet.</p>
+</header>
+</section>
+
+<section id="latest-posts">
+<h2>My Latest Thoughts</h2>
+<ul>
+    {% for post in posts %}
+    {% include "blog/includes/post.html" %}
+    {% endfor %}
+</ul>
+</section>
+
+<section id="about">
+<h2>What I Do</h2>
+<p>I love programming and now I'm doing Django</p>
+<p>My goal is to learn django for my intern</p>
+</section>
+
+{% endblock %}
+

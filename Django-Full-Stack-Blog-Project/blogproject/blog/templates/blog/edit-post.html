@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Edit a Post{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static "blog/create-a-post.css" %}">
+{% endblock %}
+
+{% block content %}
+
+<section id="create-post">
+    <form action="" method='POST' enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for form_field in form %}
+        <div class="form-control {% if form_field.errors %}invalid{% endif %}">
+            {{ form_field.label_tag }}
+            {{ form_field }}
+            {{ form_field.errors }}
+        </div>
+        {% endfor %}
+        <button>Update</button>
+    </form>
+</section>
+
+{% endblock %}

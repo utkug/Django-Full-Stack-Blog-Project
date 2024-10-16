@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Register {% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static "blog/register.css"%}">
+{% endblock %}
+
+
+
+{% block content %}
+
+<section id="register-form">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for form_field in form %} <!-- 3 tane div olusur burada -->
+        <div class="form-control {% if form_field.errors %}invalid{% endif %}">
+            {{ form_field.label_tag }}
+            {{ form_field }}
+            {{ form_field.errors }}
+        </div>
+        {% endfor %}
+        <a href="{% url "login" %}">Are you already a member?</a>
+        <button>Register</button>
+    </form>
+</section>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+
+
+<section>
+    <h2>My Profile</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for form_field in profile_form%}
+        <div>
+            {{ form_field.label_tag }}
+            {{ form_field }}
+            {{ form_field.errors }}
+        </div>
+        {% endfor %}
+        <button>Update</button>
+    </form>
+</section>
+
+
+
+{% endblock %}

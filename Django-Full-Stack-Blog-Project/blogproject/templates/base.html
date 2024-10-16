@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static "app.css" %}">
+        {% block css_files %} {% endblock %}
+</head>
+<body>
+    <header id="main-navigation">
+        <h1><a href="{% url "starting-page" %}">Utku's Blog</a></h1>
+        <nav>
+            <a href="{% url "create-a-post" %}">Create a Post</a>
+            <a href="{% url "my-posts" %}">My Posts</a>
+            <a href="{% url "post-page" %}">All Posts</a>
+            <a href="{% url "read-later" %}">Read Later Posts</a>
+            <a href="{% url "read-later" %}">My Profile</a>
+            {% if user.is_authenticated %}
+            <a href="{% url "logout" %}">Logout</a>
+            {% endif %}
+        </nav>
+    </header>
+    {% block content %} 
+    {% endblock %}
+</body>
+</html>

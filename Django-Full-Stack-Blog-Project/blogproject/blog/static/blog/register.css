@@ -1,0 +1,66 @@
+#main-navigation {
+    background-color: #390281;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  }
+#register-form{
+  margin: 8rem auto 3rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  width: 90%;
+  max-width: 40rem;
+}
+
+.form-control{
+  margin-bottom: 1rem;
+}
+
+.form-control label{
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block; /* label yanda gozukmek yerine textboxlarin ustunde gozukur */
+}
+
+.form-control input,
+.form-control textarea{  /* 2 input, 1 textare */
+  display: block;
+  width: 100%;
+  font: inherit;
+  padding: 0.25rem;  /* yazma alanını boyutunu ayarlar beyaz kısmın */
+  border-radius: 6px;
+  border: 1px solid #ccc; /* siyah borderları kaldırmak için eger textbox icinde degilsek */
+}
+.errorlist{
+  list-style: none;
+  margin: 0.5rem 0;
+  padding: 0;
+  color: rgb(114, 7, 7)
+}
+.invalid label{
+  color:rgb(114, 7, 7)
+}
+
+.invalid input,
+.invalid textarea{
+  border-color: rgb(114, 7, 7);
+  background-color: rgb(226, 202, 202);
+}
+#register-form button{
+  border-radius: 6px;
+  background-color: #390281;
+  padding: 0.25rem 0.5rem;
+  color: white;
+  font-size: large;
+  border: 1px solid orange;
+  transition: background-color 0.3s ease, font-size 0.3s ease; /* Geçiş efektlerini ekleyin */  
+}
+#register-form button:hover,
+#register-form button:active{
+  cursor: pointer;
+  background-color: #8345d5;
+  font-size: x-large;
+}
+#register-form a{
+  color: #8345d5;
+  float: right;
+}

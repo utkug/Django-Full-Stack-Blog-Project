@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Chat Application
+{% endblock %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static "blog/index2.css" %}">
+{% endblock %}
+{% block content %}
+   
+
+    <div id="messages"></div>
+    <form id="form">
+        <input type="text" name="message" placeholder="Type your message here..." />
+        <button type="submit">Send</button>
+    </form>
+    <script type="text/javascript">
+        let url = `ws://${window.location.host}/ws/socket-server/`
+        const chatSocket = new WebSocket(url)
+
+        chatSocket.onmessage = function(e) {
+            let data = JSON.parse(e.data)
+            console.log('Data:', data)
+        
+            if(data.type === 'chat'){
+                let messages = document.getElementById('messages')
+        
+                // Mesajın alındığı zamanı almak için
+                let now = new Date()
+                let hours = String(now.getHours()).padStart(2, '0')
+                let minutes = String(now.getMinutes()).padStart(2, '0')
+                let time = `${hours}:${minutes}`
+        
+                messages.insertAdjacentHTML('beforeend', `
+            <div class="message-container">
+                <div class="message-header">
+                    <span class="message-time">${time}</span>
+                    <span class="message-username">${data.username}:</span>
+                    
+                <p class="message-text">${data.message}</p>
+            
+        `);
+            }
+        }
+        
+        chatSocket.onerror = function(e) {
+            console.error('WebSocket error:', e)
+        }
+
+        chatSocket.onclose = function(e) {
+            console.warn('WebSocket closed unexpectedly:', e)
+        }
+
+        let form = document.getElementById('form')
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+            let message = e.target.message.value
+            chatSocket.send(JSON.stringify({
+                'message': message
+            }))
+            form.reset()
+        })
+    </script>
+{% endblock %}
